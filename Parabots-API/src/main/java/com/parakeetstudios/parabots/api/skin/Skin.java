@@ -1,6 +1,7 @@
 package com.parakeetstudios.parabots.api.skin;
 
 import com.parakeetstudios.parabots.api.bot.Parabot;
+import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
 import org.bukkit.entity.Player;
 
 import java.util.EnumSet;
@@ -10,6 +11,9 @@ public interface Skin {
 
     UUID getSkinID();
 
+    void setSkinName(String name);
+    String getSkinName();
+
     String getTexture();
     String getSignature();
 
@@ -18,15 +22,5 @@ public interface Skin {
 
     EnumSet<SkinPart> getVisibleSkinParts();
     void setVisibleSkinParts(EnumSet<SkinPart> parts);
-
-    public enum SkinPart {
-        CAPE,
-        JACKET,
-        LEFT_SLEEVE,
-        RIGHT_SLEEVE,
-        LEFT_PANT_LEG,
-        RIGHT_PANT_LEG,
-        HAT
-    }
 
 }
