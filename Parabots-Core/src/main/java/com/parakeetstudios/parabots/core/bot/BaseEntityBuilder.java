@@ -1,14 +1,10 @@
-package com.parakeetstudios.bot;
+package com.parakeetstudios.parabots.core.bot;
 
-import com.parakeetstudios.api.bot.Parabot;
-import com.parakeetstudios.utils.NMS;
-import org.bukkit.Bukkit;
+import com.parakeetstudios.parabots.api.bot.Parabot;
+import com.parakeetstudios.parabots.core.utils.NMS;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_20_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.jetbrains.annotations.NotNull;
 
 public abstract class BaseEntityBuilder implements EntityBuilder {
 

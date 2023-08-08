@@ -1,6 +1,6 @@
-package com.parakeetstudios.api.bot;
+package com.parakeetstudios.parabots.api.bot;
 
-import com.parakeetstudios.api.BotManager;
+import com.parakeetstudios.parabots.api.BotManager;
 import net.minecraft.core.Direction;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;

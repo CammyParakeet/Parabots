@@ -1,6 +1,6 @@
-package com.parakeetstudios.api;
+package com.parakeetstudios.parabots.api;
 
-import com.parakeetstudios.api.bot.Parabot;
+import com.parakeetstudios.parabots.api.bot.Parabot;
 import org.bukkit.Location;
 
 import java.util.UUID;

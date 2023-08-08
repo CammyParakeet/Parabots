@@ -1,6 +1,6 @@
-package com.parakeetstudios.bot;
+package com.parakeetstudios.parabots.core.bot;
 
-import com.parakeetstudios.api.bot.Parabot;
+import com.parakeetstudios.parabots.api.bot.Parabot;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 

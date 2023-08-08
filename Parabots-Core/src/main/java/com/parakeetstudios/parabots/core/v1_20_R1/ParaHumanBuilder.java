@@ -1,19 +1,14 @@
-package com.parakeetstudios.impl.v1_20_R1;
+package com.parakeetstudios.parabots.core.v1_20_R1;
 
 import com.mojang.authlib.GameProfile;
-import com.parakeetstudios.api.bot.Parabot;
-import com.parakeetstudios.api.bot.Skin;
-import com.parakeetstudios.bot.BaseEntityBuilder;
+import com.parakeetstudios.parabots.api.bot.Parabot;
+import com.parakeetstudios.parabots.api.skin.Skin;
+import com.parakeetstudios.parabots.core.bot.BaseEntityBuilder;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_20_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_20_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.jetbrains.annotations.NotNull;
 
 public class ParaHumanBuilder extends BaseEntityBuilder {
 
