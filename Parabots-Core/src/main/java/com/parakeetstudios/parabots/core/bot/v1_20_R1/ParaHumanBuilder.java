@@ -1,4 +1,4 @@
-package com.parakeetstudios.parabots.core.v1_20_R1;
+package com.parakeetstudios.parabots.core.bot.v1_20_R1;
 
 import com.mojang.authlib.GameProfile;
 import com.parakeetstudios.parabots.api.bot.Parabot;
