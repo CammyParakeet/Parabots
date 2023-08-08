@@ -23,12 +23,13 @@ public abstract class BaseParabot implements Parabot {
     private boolean usingMinecraftAI;
     private boolean isSpawned;
 
-    protected BaseParabot(String name, BotManager manager) {
+    protected BaseParabot(String name, BotManager manager, EntityType type) {
         this.taskMap = new ConcurrentHashMap<>();
         this.botID = UUID.randomUUID();
         this.minecraftID = UUID.randomUUID();
         this.botName = name;
         this.manager = manager;
+        this.entityType = type;
     }
 
     @Override

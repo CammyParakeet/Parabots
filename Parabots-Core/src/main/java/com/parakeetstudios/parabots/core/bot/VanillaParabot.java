@@ -6,17 +6,22 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import net.minecraft.core.Direction;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-public class ParabotFactory extends BaseParabot {
+public class VanillaParabot extends BaseParabot {
 
-    private EntityBuilder builder;
+    private EntityBuilder entityBuilder;
 
-    protected ParabotFactory(String name, BotManager manager) {
-        super(name, manager);
+    public VanillaParabot(String name, BotManager manager, EntityType type) {
+        super(name, manager, type);
+        //entityBuilder = GenerateEntityBuilder();
     }
 
+    public void setEntityBuilder(EntityBuilder newBuilder) {
+
+    }
 
     @Override
     public Parabot clone() {

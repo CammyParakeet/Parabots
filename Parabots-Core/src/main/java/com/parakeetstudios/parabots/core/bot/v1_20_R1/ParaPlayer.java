@@ -6,7 +6,6 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.api.skin.Skinnable;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
-import com.parakeetstudios.parabots.core.bot.ParabotFactory;
 import com.parakeetstudios.parabots.core.utils.DummyConnection;
 import com.parakeetstudios.parabots.core.utils.DummyPacketListener;
 import net.minecraft.network.protocol.PacketFlow;
