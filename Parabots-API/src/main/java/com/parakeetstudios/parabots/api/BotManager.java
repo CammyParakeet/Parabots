@@ -3,6 +3,7 @@ package com.parakeetstudios.parabots.api;
 import com.parakeetstudios.parabots.api.bot.Parabot;
 import org.bukkit.Location;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface BotManager {
@@ -11,6 +12,7 @@ public interface BotManager {
     Parabot createBot(String name);
 
     Parabot getBotByID(UUID botID);
+    List<Parabot> getAllParabots();
 
     boolean removeBot(UUID botID);
 

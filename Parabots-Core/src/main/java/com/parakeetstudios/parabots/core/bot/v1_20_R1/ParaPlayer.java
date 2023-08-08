@@ -6,22 +6,36 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.api.skin.Skinnable;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
+import com.parakeetstudios.parabots.core.bot.ParabotFactory;
+import com.parakeetstudios.parabots.core.utils.DummyConnection;
+import com.parakeetstudios.parabots.core.utils.DummyPacketListener;
+import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.ServerPlayerGameMode;
 
 public class ParaPlayer extends ServerPlayer implements Skinnable {
 
     private Parabot bot;
     private Skin skin;
+    private ServerPlayerGameMode gamemode;
 
     public ParaPlayer(Parabot bot, MinecraftServer server, ServerLevel world, GameProfile profile) {
         super(server, world, profile);
         this.bot = bot;
+        DummyConnection conn = new DummyConnection(PacketFlow.CLIENTBOUND);
+        super.connection = new DummyPacketListener(server, conn, this);
     }
 
-    
 
+    @Override
+    public void doTick() {
+        if (bot == null) {
+            super.doTick();
+        }
+
+    }
 
 
 
