@@ -15,14 +15,14 @@ public abstract class BaseEntityBuilder implements EntityBuilder {
     private Entity bukkitEntity;
 
     @Override
-    public void create(Parabot bot, Location loc) {
-        this.bukkitEntity = createBukkitEntity(bot, loc);
+    public void build(Parabot bot, Location loc) {
+        this.bukkitEntity = buildBukkitEntity(bot, loc);
     }
 
-    protected abstract Entity createBukkitEntity(Parabot bot, Location loc);
+    protected abstract Entity buildBukkitEntity(Parabot bot, Location loc);
 
     @Override
-    public void destroy() {
+    public void dispose() {
 
     }
 

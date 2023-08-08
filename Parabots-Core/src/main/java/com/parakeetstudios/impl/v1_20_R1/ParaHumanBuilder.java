@@ -29,7 +29,7 @@ public class ParaHumanBuilder extends BaseEntityBuilder {
     }
 
     @Override
-    protected Entity createBukkitEntity(Parabot bot, Location loc) {
+    protected Entity buildBukkitEntity(Parabot bot, Location loc) {
 
         final ServerLevel nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
         final GameProfile gameProfile = new GameProfile(bot.getMinecraftID(), bot.getBotName());

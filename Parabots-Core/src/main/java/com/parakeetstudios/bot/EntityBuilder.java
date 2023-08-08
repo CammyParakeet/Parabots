@@ -6,9 +6,9 @@ import org.bukkit.entity.Entity;
 
 public interface EntityBuilder {
 
-    void create(Parabot bot, Location loc);
+    void build(Parabot bot, Location loc);
 
-    void destroy();
+    void dispose();
 
     boolean spawn();
 
