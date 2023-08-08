@@ -16,7 +16,7 @@ public class VanillaParabot extends BaseParabot {
 
     public VanillaParabot(String name, BotManager manager, EntityType type) {
         super(name, manager, type);
-        //entityBuilder = GenerateEntityBuilder();
+        entityBuilder = setEntityBuilder();
     }
 
     public void setEntityBuilder(EntityBuilder newBuilder) {

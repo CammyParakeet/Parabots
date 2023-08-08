@@ -16,9 +16,10 @@ import net.minecraft.server.level.ServerPlayerGameMode;
 
 public class ParaPlayer extends ServerPlayer implements Skinnable {
 
-    private Parabot bot;
+    private final Parabot bot;
     private Skin skin;
-    private ServerPlayerGameMode gamemode;
+    // private ServerPlayerGameMode gamemode; // Will get gamemode from bot
+    // as well as other metadata that can be adjusted in the parabot api
 
     public ParaPlayer(Parabot bot, MinecraftServer server, ServerLevel world, GameProfile profile) {
         super(server, world, profile);
@@ -33,9 +34,8 @@ public class ParaPlayer extends ServerPlayer implements Skinnable {
         if (bot == null) {
             super.doTick();
         }
-
+        //TODO
     }
-
 
 
     public Skin getSkin() {
