@@ -1,5 +1,6 @@
 package com.parakeetstudios.parabots.api.skin;
 
+import com.mojang.authlib.GameProfile;
 import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
 import org.bukkit.entity.Player;
@@ -16,9 +17,6 @@ public interface Skin {
 
     String getTexture();
     String getSignature();
-
-    void applyTo(Parabot bot);
-    void applyTo(Player player);
 
     EnumSet<SkinPart> getVisibleSkinParts();
     void setVisibleSkinParts(EnumSet<SkinPart> parts);

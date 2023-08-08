@@ -13,25 +13,21 @@ import org.bukkit.entity.Entity;
 public class ParaHumanBuilder extends BaseEntityBuilder {
 
     private Entity entity;
-    private Skin skin;
 
     public ParaHumanBuilder() {
        super();
     }
 
-    public void setHumanSkin(Skin skin) {
-        this.skin = skin;
-    }
 
     @Override
     protected Entity buildBukkitEntity(Parabot bot, Location loc) {
 
         final ServerLevel nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
         final GameProfile gameProfile = new GameProfile(bot.getMinecraftID(), bot.getBotName());
-        final ParaPlayer paraPlayer = new ParaPlayer(MinecraftServer.getServer(), nmsWorld, gameProfile, bot);
+        final ParaPlayer paraPlayer = new ParaPlayer(bot, MinecraftServer.getServer(), nmsWorld, gameProfile);
 
-        if (skin != null) {
-            //skin.applyTo(paraPlayer);
+        if (paraPlayer.getSkin() != null) {
+            //paraPlayer.getSkin().applyTo();
         }
 
         return paraPlayer.getBukkitEntity(); 

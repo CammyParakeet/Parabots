@@ -1,8 +1,11 @@
-package com.parakeetstudios.parabots.core.utils;
+package com.parakeetstudios.parabots.core.skin;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
+import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.EnumSet;
@@ -48,18 +51,9 @@ public class HumanSkin implements Skin {
         return signature;
     }
 
-    @Override
-    public void applyTo(Parabot bot) {
-
-    }
 
     @Override
-    public void applyTo(Player player) {
-
-    }
-
-    @Override
-    public EnumSet<SkinPart> getVisibleSkinParts() {
+    public final EnumSet<SkinPart> getVisibleSkinParts() {
         return visibleSkinParts;
     }
 
