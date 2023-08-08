@@ -9,26 +9,20 @@ import net.minecraft.server.level.ServerLevel;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
-public class ParaHumanBuilder extends BaseEntityBuilder {
-
-    private Entity entity;
+public class ParaHumanBuilder extends BaseEntityBuilder<Player> {
 
     public ParaHumanBuilder() {
        super();
     }
 
-
     @Override
-    protected Entity buildBukkitEntity(Parabot bot, Location loc) {
+    protected Player buildBukkitEntity(Parabot bot, Location loc) {
 
         final ServerLevel nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
         final GameProfile gameProfile = new GameProfile(bot.getMinecraftID(), bot.getBotName());
         final ParaPlayer paraPlayer = new ParaPlayer(bot, MinecraftServer.getServer(), nmsWorld, gameProfile);
-
-        if (paraPlayer.getSkin() != null) {
-            //paraPlayer.getSkin().applyTo();
-        }
 
         return paraPlayer.getBukkitEntity(); 
     }

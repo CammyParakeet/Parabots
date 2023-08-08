@@ -10,34 +10,35 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 import java.util.Optional;
 
-public abstract class BaseEntityBuilder implements EntityBuilder {
+public abstract class BaseEntityBuilder<E extends Entity> implements EntityBuilder<E> {
 
-    private Entity bukkitEntity;
+    protected E bukkitEntity;
 
     @Override
     public void build(Parabot bot, Location loc) {
-        this.bukkitEntity = buildBukkitEntity(bot, loc);
+        bukkitEntity = buildBukkitEntity(bot, loc);
     }
 
-    protected abstract Entity buildBukkitEntity(Parabot bot, Location loc);
+    protected abstract E buildBukkitEntity(Parabot bot, Location loc);
 
     @Override
     public void dispose() {
-
+        //TODO
     }
 
     @Override
     public boolean spawn() {
-        return NMS.addEntityToNMSWorld(this.bukkitEntity, CreatureSpawnEvent.SpawnReason.CUSTOM);
+        return NMS.addEntityToNMSWorld(bukkitEntity, CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
     @Override
     public boolean despawn() {
+        //TODO
         return false;
     }
 
     @Override
-    public Entity getBukkitEntity() {
-        return null;
+    public E getBukkitEntity() {
+        return bukkitEntity;
     }
 }
