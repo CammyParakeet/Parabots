@@ -2,7 +2,7 @@ package com.parakeetstudios.parabots.core;
 
 import com.parakeetstudios.parabots.api.BotManager;
 import com.parakeetstudios.parabots.api.bot.Parabot;
-import com.parakeetstudios.parabots.core.bot.VanillaParabot;
+import com.parakeetstudios.parabots.core.v1_20_R1.bot.VanillaParabot;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ParabotManager implements BotManager {
+public class VanillaParabotManager implements BotManager {
 
     private final ConcurrentHashMap<UUID, Parabot> parabots = new ConcurrentHashMap<>();
 

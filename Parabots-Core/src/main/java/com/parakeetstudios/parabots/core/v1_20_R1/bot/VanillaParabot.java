@@ -1,9 +1,10 @@
-package com.parakeetstudios.parabots.core.bot;
+package com.parakeetstudios.parabots.core.v1_20_R1.bot;
 
 import com.parakeetstudios.parabots.api.BotManager;
 import com.parakeetstudios.parabots.api.bot.BaseParabot;
 import com.parakeetstudios.parabots.api.bot.Parabot;
-import com.parakeetstudios.parabots.core.builders.EntityProgram;
+import com.parakeetstudios.parabots.core.EntityProgram;
+import com.parakeetstudios.parabots.core.v1_20_R1.EntityProgramRegistry;
 import net.minecraft.core.Direction;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -11,20 +12,18 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-import static com.parakeetstudios.parabots.core.utils.EntityProgramRegistry.supplyBuilderForType;
-
 public class VanillaParabot extends BaseParabot {
 
-    private EntityProgram entityBuilder;
+    private EntityProgram entityProgram;
 
     public VanillaParabot(String name, BotManager manager, EntityType type) {
         super(name, manager, type);
-        setEntityBuilder(supplyBuilderForType(type));
+        setEntityBuilder(EntityProgramRegistry.supplyBuilderForType(type));
     }
 
     public void setEntityBuilder(EntityProgram newBuilder) {
         //TODO pre checks for if entity is spawned already etc etc
-        this.entityBuilder = newBuilder;
+        this.entityProgram = newBuilder;
     }
 
     @Override
@@ -111,7 +110,7 @@ public class VanillaParabot extends BaseParabot {
 
     @Override
     public Entity getBukkitEntity() {
-        return entityBuilder.getBukkitEntity();
+        return entityProgram.getBukkitEntity();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.parakeetstudios.parabots.core.bot.v1_20_R1;
+package com.parakeetstudios.parabots.core.v1_20_R1.bot;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -6,8 +6,8 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.api.skin.Skinnable;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
-import com.parakeetstudios.parabots.core.net.DummyConnection;
-import com.parakeetstudios.parabots.core.net.DummyPacketListener;
+import com.parakeetstudios.parabots.core.v1_20_R1.net.DummyConnection;
+import com.parakeetstudios.parabots.core.v1_20_R1.net.DummyPacketListener;
 import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;

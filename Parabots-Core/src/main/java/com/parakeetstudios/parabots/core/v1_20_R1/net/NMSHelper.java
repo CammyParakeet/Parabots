@@ -1,10 +1,10 @@
-package com.parakeetstudios.parabots.core.net;
+package com.parakeetstudios.parabots.core.v1_20_R1.net;
 
 import org.bukkit.craftbukkit.v1_20_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-public class NMS {
+public class NMSHelper {
 
     public static boolean addEntityToNMSWorld(Entity entity, CreatureSpawnEvent.SpawnReason reason) {
         return (getNMSEntity(entity)).level().addFreshEntity(getNMSEntity(entity), reason);

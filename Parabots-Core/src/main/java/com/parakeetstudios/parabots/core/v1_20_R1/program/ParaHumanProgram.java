@@ -1,9 +1,10 @@
-package com.parakeetstudios.parabots.core.bot.v1_20_R1;
+package com.parakeetstudios.parabots.core.v1_20_R1.program;
 
 import com.mojang.authlib.GameProfile;
 import com.parakeetstudios.parabots.api.bot.Parabot;
-import com.parakeetstudios.parabots.core.builders.BaseEntityProgram;
-import com.parakeetstudios.parabots.core.builders.ProgramForType;
+import com.parakeetstudios.parabots.core.ProgramForType;
+import com.parakeetstudios.parabots.core.v1_20_R1.BaseEntityProgram;
+import com.parakeetstudios.parabots.core.v1_20_R1.bot.ParaPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import org.bukkit.Location;

@@ -1,5 +1,6 @@
 package com.parakeetstudios.parabots.api.utils;
 
+// This might need to be changed to an interface at some point for compatibility?
 public class SkinUtils {
 
     public enum SkinPart {

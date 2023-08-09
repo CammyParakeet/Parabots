@@ -1,4 +1,4 @@
-package com.parakeetstudios.parabots.core.builders;
+package com.parakeetstudios.parabots.core;
 
 import org.bukkit.entity.EntityType;
 

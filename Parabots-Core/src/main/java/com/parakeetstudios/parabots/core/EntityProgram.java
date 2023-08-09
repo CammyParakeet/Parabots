@@ -1,4 +1,4 @@
-package com.parakeetstudios.parabots.core.builders;
+package com.parakeetstudios.parabots.core;
 
 import com.parakeetstudios.parabots.api.bot.Parabot;
 import org.bukkit.Location;
