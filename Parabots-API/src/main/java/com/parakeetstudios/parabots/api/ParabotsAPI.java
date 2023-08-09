@@ -12,11 +12,9 @@ import java.util.UUID;
 */
 public final class ParabotsAPI {
 
-    private final BotManager botManager;
+    private BotManager botManager;
 
-    private ParabotsAPI(BotManager manager) {
-        this.botManager = manager;
-    };
+    private ParabotsAPI() {};
 
     private static final class InstanceHolder {
         private static final ParabotsAPI instance = new ParabotsAPI();
@@ -48,5 +46,27 @@ public final class ParabotsAPI {
      */
     public Parabot getBotByID(UUID botID) {
         return botManager.getBotByID(botID);
+    }
+
+    /**
+     * Initializes the {@link ParabotsAPI} with a specific {@link BotManager} instance.
+     * <p>
+     * This method is intended to be called only once during the lifecycle of the API to set
+     * its {@link BotManager}. Any subsequent invocations will result in an {@link IllegalStateException}.
+     * </p>
+     * <p>
+     * It is recommended to invoke this method early in the startup sequence, ideally from
+     * the main plugin class's onEnable method to ensure the API is properly initialized.
+     * </p>
+     *
+     * @param manager The {@link BotManager} instance to be used by the API.
+     * @throws IllegalStateException if the method is called more than once.
+     */
+    public void initialize(BotManager manager) {
+        if (this.botManager == null) {
+            this.botManager = manager;
+        } else {
+            throw new IllegalStateException("ParabotsAPI has already been initialized");
+        }
     }
 }

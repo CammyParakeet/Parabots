@@ -14,27 +14,38 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
+import java.util.Optional;
+
 public class VanillaParabot extends BaseParabot {
 
     private EntityProgram entityProgram;
 
     public VanillaParabot(EntityType type, String name, Location loc, BotManager manager) {
         super(type, name, loc, manager);
-        setEntityBuilder(EntityProgramRegistry.supplyBuilderForType(type));
+        setEntityProgram(EntityProgramRegistry.supplyBuilderForType(type));
     }
 
-    public void setEntityBuilder(EntityProgram newProgram) {
-        boolean hasSpawned = entityProgram != null && isSpawned();
-        Location currentLoc = null;
-
-        if (hasSpawned) {
-            currentLoc = getBukkitEntity().getLocation();
+    /**
+     * Sets a new {@link EntityProgram} for the current entity.
+     * <p>
+     * If the entity was previously spawned using an older program, it will be despawned
+     * and then immediately respawned at its last known location using the new program.
+     * </p>
+     *
+     * @param newProgram The new program to set for the entity. This cannot be {@code null}.
+     * @throws IllegalArgumentException if the provided {@link EntityProgram} is {@code null}.
+     *
+     * @see EntityProgram
+     */
+    public void setEntityProgram(EntityProgram newProgram) {
+        if (newProgram == null) throw new IllegalArgumentException("EntityProgram cannot be null");
+        Optional<Location> currentLoc = Optional.empty();
+        if (entityProgram != null && isSpawned()) {
+            currentLoc = Optional.of(getBukkitEntity().getLocation());
             despawn();
         }
         entityProgram = newProgram;
-        if (hasSpawned) {
-            spawn(currentLoc);
-        }
+        currentLoc.ifPresent(this::spawn);
     }
 
     @Override
