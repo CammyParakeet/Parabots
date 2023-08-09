@@ -3,6 +3,7 @@ package com.parakeetstudios.parabots.core.bot;
 import com.parakeetstudios.parabots.api.BotManager;
 import com.parakeetstudios.parabots.api.bot.BaseParabot;
 import com.parakeetstudios.parabots.api.bot.Parabot;
+import com.parakeetstudios.parabots.core.builders.EntityBuilder;
 import net.minecraft.core.Direction;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -16,11 +17,12 @@ public class VanillaParabot extends BaseParabot {
 
     public VanillaParabot(String name, BotManager manager, EntityType type) {
         super(name, manager, type);
-        entityBuilder = setEntityBuilder();
+        //setEntityBuilder(supplyBuilder(type));
     }
 
     public void setEntityBuilder(EntityBuilder newBuilder) {
-
+        //TODO pre checks for if entity is spawned already etc etc
+        this.entityBuilder = newBuilder;
     }
 
     @Override

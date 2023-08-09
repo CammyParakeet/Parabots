@@ -6,13 +6,12 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.api.skin.Skinnable;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
-import com.parakeetstudios.parabots.core.utils.DummyConnection;
-import com.parakeetstudios.parabots.core.utils.DummyPacketListener;
+import com.parakeetstudios.parabots.core.net.DummyConnection;
+import com.parakeetstudios.parabots.core.net.DummyPacketListener;
 import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.level.ServerPlayerGameMode;
 
 public class ParaPlayer extends ServerPlayer implements Skinnable {
 

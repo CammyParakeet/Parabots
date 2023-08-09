@@ -1,4 +1,4 @@
-package com.parakeetstudios.parabots.core.utils;
+package com.parakeetstudios.parabots.core.net;
 
 import org.bukkit.craftbukkit.v1_20_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;

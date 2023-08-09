@@ -1,25 +1,21 @@
-package com.parakeetstudios.parabots.core.bot;
+package com.parakeetstudios.parabots.core.builders;
 
 import com.parakeetstudios.parabots.api.bot.Parabot;
-import com.parakeetstudios.parabots.api.skin.Skin;
-import com.parakeetstudios.parabots.core.bot.v1_20_R1.ParaPlayer;
-import com.parakeetstudios.parabots.core.utils.NMS;
+import com.parakeetstudios.parabots.core.net.NMS;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-import java.util.Optional;
+public abstract class BaseEntityBuilder implements EntityBuilder {
 
-public abstract class BaseEntityBuilder<E extends Entity> implements EntityBuilder<E> {
-
-    protected E bukkitEntity;
+    protected Entity bukkitEntity;
 
     @Override
     public void build(Parabot bot, Location loc) {
         bukkitEntity = buildBukkitEntity(bot, loc);
     }
 
-    protected abstract E buildBukkitEntity(Parabot bot, Location loc);
+    protected abstract Entity buildBukkitEntity(Parabot bot, Location loc);
 
     @Override
     public void dispose() {
@@ -38,7 +34,7 @@ public abstract class BaseEntityBuilder<E extends Entity> implements EntityBuild
     }
 
     @Override
-    public E getBukkitEntity() {
+    public Entity getBukkitEntity() {
         return bukkitEntity;
     }
 }

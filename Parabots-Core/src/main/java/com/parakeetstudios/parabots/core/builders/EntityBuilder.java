@@ -1,10 +1,10 @@
-package com.parakeetstudios.parabots.core.bot;
+package com.parakeetstudios.parabots.core.builders;
 
 import com.parakeetstudios.parabots.api.bot.Parabot;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
-public interface EntityBuilder<E extends Entity> {
+public interface EntityBuilder {
 
     void build(Parabot bot, Location loc);
 
@@ -14,6 +14,6 @@ public interface EntityBuilder<E extends Entity> {
 
     boolean despawn();
 
-    E getBukkitEntity();
+    Entity getBukkitEntity();
 
 }

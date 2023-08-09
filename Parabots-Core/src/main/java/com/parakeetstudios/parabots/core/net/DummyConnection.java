@@ -1,4 +1,4 @@
-package com.parakeetstudios.parabots.core.utils;
+package com.parakeetstudios.parabots.core.net;
 
 import net.minecraft.network.Connection;
 import net.minecraft.network.PacketSendListener;
