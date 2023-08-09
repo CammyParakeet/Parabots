@@ -11,13 +11,15 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
+import static com.parakeetstudios.parabots.core.utils.EntityBuilderRegistry.supplyBuilderForType;
+
 public class VanillaParabot extends BaseParabot {
 
     private EntityBuilder entityBuilder;
 
     public VanillaParabot(String name, BotManager manager, EntityType type) {
         super(name, manager, type);
-        //setEntityBuilder(supplyBuilder(type));
+        setEntityBuilder(supplyBuilderForType(type));
     }
 
     public void setEntityBuilder(EntityBuilder newBuilder) {
@@ -109,7 +111,7 @@ public class VanillaParabot extends BaseParabot {
 
     @Override
     public Entity getBukkitEntity() {
-        return null;
+        return entityBuilder.getBukkitEntity();
     }
 
     @Override
