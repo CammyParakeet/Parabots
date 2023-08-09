@@ -10,6 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class VanillaParabot extends BaseParabot {
@@ -21,9 +22,18 @@ public class VanillaParabot extends BaseParabot {
         setEntityBuilder(EntityProgramRegistry.supplyBuilderForType(type));
     }
 
-    public void setEntityBuilder(EntityProgram newBuilder) {
-        //TODO pre checks for if entity is spawned already etc etc
-        this.entityProgram = newBuilder;
+    public void setEntityBuilder(EntityProgram newProgram) {
+        boolean hasSpawned = entityProgram != null && isSpawned();
+        Location currentLoc = null;
+
+        if (hasSpawned) {
+            currentLoc = getBukkitEntity().getLocation();
+            despawn();
+        }
+        entityProgram = newProgram;
+        if (hasSpawned) {
+            spawn(currentLoc);
+        }
     }
 
     @Override
