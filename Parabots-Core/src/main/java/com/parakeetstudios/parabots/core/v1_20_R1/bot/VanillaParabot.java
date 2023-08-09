@@ -6,6 +6,7 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.core.EntityProgram;
 import com.parakeetstudios.parabots.core.v1_20_R1.EntityProgramRegistry;
 import net.minecraft.core.Direction;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -48,17 +49,22 @@ public class VanillaParabot extends BaseParabot {
 
     @Override
     public boolean spawn() {
-        return false;
+        return spawn(getLocation(), CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
     @Override
     public boolean spawn(Location location) {
-        return false;
+        return spawn(location, CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
     @Override
     public boolean spawn(Location location, CreatureSpawnEvent.SpawnReason reason) {
-        return false;
+        if (isSpawned()) {
+            Bukkit.getLogger().info("Tried to spawn existing entity");
+            return false;
+        }
+        setSpawned(entityProgram.spawn(location, reason));
+        return isSpawned();
     }
 
     @Override
@@ -78,13 +84,10 @@ public class VanillaParabot extends BaseParabot {
 
     @Override
     public boolean despawn() {
+        setSpawned(false);
         return false;
     }
 
-    @Override
-    public boolean isSpawned() {
-        return false;
-    }
 
     @Override
     public void delete() {

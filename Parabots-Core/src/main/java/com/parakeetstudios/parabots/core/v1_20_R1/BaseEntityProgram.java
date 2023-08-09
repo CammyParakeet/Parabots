@@ -26,8 +26,8 @@ public abstract class BaseEntityProgram implements EntityProgram {
     }
 
     @Override
-    public boolean spawn() throws NullPointerException {
-        return NMSHelper.addEntityToNMSWorld(bukkitEntity, CreatureSpawnEvent.SpawnReason.CUSTOM);
+    public boolean spawn(Location location, CreatureSpawnEvent.SpawnReason reason) throws NullPointerException {
+        return NMSHelper.addEntityToNMSWorld(bukkitEntity, reason);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.parakeetstudios.parabots.api.bot;
 
 import com.parakeetstudios.parabots.api.BotManager;
-import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 
@@ -92,5 +91,16 @@ public abstract class BaseParabot implements Parabot {
     @Override
     public BotManager getOwningManager() {
         return manager;
+    }
+
+    @Override
+    public boolean isSpawned() {
+        return isSpawned;
+    }
+
+    @Override
+    public boolean setSpawned(boolean spawned) {
+        this.isSpawned = spawned;
+        return isSpawned;
     }
 }

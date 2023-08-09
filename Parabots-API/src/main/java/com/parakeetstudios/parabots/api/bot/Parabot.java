@@ -38,6 +38,7 @@ public interface Parabot {
 
     boolean despawn();
     boolean isSpawned();
+    boolean setSpawned(boolean spawned);
 
     void delete();
 
