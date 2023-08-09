@@ -15,9 +15,9 @@ public interface BotManager {
     Parabot getBotByID(UUID botID);
     List<Parabot> getAllParabots();
 
-    boolean removeBot(UUID botID);
+    void removeBot(UUID botID);
 
-    boolean spawnAllBots();
-    boolean despawnAllBots();
+    void spawnAllBots();
+    void despawnAllBots();
 
 }

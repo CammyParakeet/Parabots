@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import java.util.UUID;
@@ -29,7 +30,7 @@ public interface Parabot {
 
     boolean spawn();
     boolean spawn(Location location);
-    boolean spawn(Location location, String reason);
+    boolean spawn(Location location, CreatureSpawnEvent.SpawnReason reason);
 
     boolean spawnFor(Player player);
     boolean spawnFor(Player player, Location location);

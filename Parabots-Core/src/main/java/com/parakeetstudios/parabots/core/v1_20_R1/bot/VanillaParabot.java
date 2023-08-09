@@ -57,7 +57,7 @@ public class VanillaParabot extends BaseParabot {
     }
 
     @Override
-    public boolean spawn(Location location, String reason) {
+    public boolean spawn(Location location, CreatureSpawnEvent.SpawnReason reason) {
         return false;
     }
 
