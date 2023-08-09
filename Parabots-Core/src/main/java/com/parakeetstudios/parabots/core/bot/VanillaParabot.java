@@ -3,7 +3,7 @@ package com.parakeetstudios.parabots.core.bot;
 import com.parakeetstudios.parabots.api.BotManager;
 import com.parakeetstudios.parabots.api.bot.BaseParabot;
 import com.parakeetstudios.parabots.api.bot.Parabot;
-import com.parakeetstudios.parabots.core.builders.EntityBuilder;
+import com.parakeetstudios.parabots.core.builders.EntityProgram;
 import net.minecraft.core.Direction;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -11,18 +11,18 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-import static com.parakeetstudios.parabots.core.utils.EntityBuilderRegistry.supplyBuilderForType;
+import static com.parakeetstudios.parabots.core.utils.EntityProgramRegistry.supplyBuilderForType;
 
 public class VanillaParabot extends BaseParabot {
 
-    private EntityBuilder entityBuilder;
+    private EntityProgram entityBuilder;
 
     public VanillaParabot(String name, BotManager manager, EntityType type) {
         super(name, manager, type);
         setEntityBuilder(supplyBuilderForType(type));
     }
 
-    public void setEntityBuilder(EntityBuilder newBuilder) {
+    public void setEntityBuilder(EntityProgram newBuilder) {
         //TODO pre checks for if entity is spawned already etc etc
         this.entityBuilder = newBuilder;
     }

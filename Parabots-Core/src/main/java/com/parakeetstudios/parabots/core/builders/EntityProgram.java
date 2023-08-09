@@ -4,7 +4,7 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
-public interface EntityBuilder {
+public interface EntityProgram {
 
     void build(Parabot bot, Location loc);
 

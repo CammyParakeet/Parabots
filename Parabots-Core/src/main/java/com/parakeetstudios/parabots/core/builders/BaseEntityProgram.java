@@ -6,7 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-public abstract class BaseEntityBuilder implements EntityBuilder {
+public abstract class BaseEntityProgram implements EntityProgram {
 
     protected Entity bukkitEntity;
 
