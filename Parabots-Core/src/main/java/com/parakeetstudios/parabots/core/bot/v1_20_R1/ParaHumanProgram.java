@@ -3,7 +3,7 @@ package com.parakeetstudios.parabots.core.bot.v1_20_R1;
 import com.mojang.authlib.GameProfile;
 import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.core.builders.BaseEntityProgram;
-import com.parakeetstudios.parabots.core.builders.BuilderForType;
+import com.parakeetstudios.parabots.core.builders.ProgramForType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import org.bukkit.Location;
@@ -12,7 +12,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
-@BuilderForType(EntityType.PLAYER)
+@ProgramForType(EntityType.PLAYER)
 public class ParaHumanProgram extends BaseEntityProgram {
 
     public ParaHumanProgram() {
