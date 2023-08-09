@@ -12,7 +12,7 @@ public interface EntityProgram {
 
     boolean spawn();
 
-    boolean despawn();
+    void despawn();
 
     Entity getBukkitEntity();
 

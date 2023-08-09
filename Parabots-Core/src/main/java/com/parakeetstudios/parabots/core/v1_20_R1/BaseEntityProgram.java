@@ -5,6 +5,7 @@ import com.parakeetstudios.parabots.core.EntityProgram;
 import com.parakeetstudios.parabots.core.v1_20_R1.net.NMSHelper;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public abstract class BaseEntityProgram implements EntityProgram {
@@ -20,18 +21,23 @@ public abstract class BaseEntityProgram implements EntityProgram {
 
     @Override
     public void dispose() {
-        //TODO
+        despawn();
+        bukkitEntity = null;
     }
 
     @Override
-    public boolean spawn() {
+    public boolean spawn() throws NullPointerException {
         return NMSHelper.addEntityToNMSWorld(bukkitEntity, CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
     @Override
-    public boolean despawn() {
-        //TODO
-        return false;
+    public void despawn() {
+        if (bukkitEntity == null) return;
+        if (bukkitEntity instanceof Player) {
+            //TODO remove from NMSWorld
+        } else {
+            bukkitEntity.remove();
+        }
     }
 
     @Override
