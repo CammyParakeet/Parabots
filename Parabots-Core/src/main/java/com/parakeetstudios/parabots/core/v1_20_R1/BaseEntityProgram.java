@@ -34,7 +34,8 @@ public abstract class BaseEntityProgram implements EntityProgram {
     public void despawn() {
         if (bukkitEntity == null) return;
         if (bukkitEntity instanceof Player) {
-            //TODO remove from NMSWorld
+            NMSHelper.removeEntityFromNMSWorld(bukkitEntity);
+            NMSHelper.killNMSEntity(bukkitEntity);
         } else {
             bukkitEntity.remove();
         }
