@@ -13,6 +13,7 @@ import java.util.UUID;
 public final class ParabotsAPI {
 
     private BotManager botManager;
+    private SkinManager skinManager;
 
     private ParabotsAPI() {};
 
@@ -32,6 +33,10 @@ public final class ParabotsAPI {
         return botManager;
     }
 
+    public SkinManager getSkinManager() {
+        return skinManager;
+    }
+
     /**
      * Initializes the {@link ParabotsAPI} with a specific {@link BotManager} instance.
      * <p>
@@ -43,12 +48,13 @@ public final class ParabotsAPI {
      * the main plugin class's onEnable method to ensure the API is properly initialized.
      * </p>
      *
-     * @param manager The {@link BotManager} instance to be used by the API.
+     * @param botManager The {@link BotManager} instance to be used by the API.
      * @throws IllegalStateException if the method is called more than once.
      */
-    public synchronized void initialize(BotManager manager) {
-        if (this.botManager == null) {
-            this.botManager = manager;
+    public synchronized void initialize(BotManager botManager, SkinManager skinManager) {
+        if (this.botManager == null && this.skinManager == null) {
+            this.botManager = botManager;
+            this.skinManager = skinManager;
         } else {
             throw new IllegalStateException("ParabotsAPI has already been initialized");
         }

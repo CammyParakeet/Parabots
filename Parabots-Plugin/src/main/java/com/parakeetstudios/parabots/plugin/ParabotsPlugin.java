@@ -1,7 +1,10 @@
 package com.parakeetstudios.parabots.plugin;
 
+import com.parakeetstudios.parabots.api.BotManager;
 import com.parakeetstudios.parabots.api.ParabotsAPI;
+import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.core.VanillaBotManager;
+import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ParabotsPlugin extends JavaPlugin {

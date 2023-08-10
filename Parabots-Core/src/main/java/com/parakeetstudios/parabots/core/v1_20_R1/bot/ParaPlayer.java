@@ -33,7 +33,6 @@ public class ParaPlayer extends ServerPlayer implements Skinnable {
         if (bot == null) {
             super.doTick();
         }
-        //TODO
         super.baseTick();
         detectEquipmentUpdates();
         noPhysics = true;
