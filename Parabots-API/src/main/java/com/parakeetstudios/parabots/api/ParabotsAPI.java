@@ -28,24 +28,8 @@ public final class ParabotsAPI {
         return InstanceHolder.instance;
     }
 
-    /**
-     * Create a new bot.
-     * @param type The type of bot.
-     * @param name The name of the bot.
-     * @param location The location to spawn the bot.
-     * @return The created Parabot instance.
-     */
-    public Parabot createBot(EntityType type, String name, Location location) {
-        return botManager.createBot(type, name, location);
-    }
-
-    /**
-     * Retrieve a bot by its UUID.
-     * @param botID The UUID of the bot.
-     * @return The Parabot instance, or null if no bot with the given UUID exists.
-     */
-    public Parabot getBotByID(UUID botID) {
-        return botManager.getBotByID(botID);
+    public BotManager getBotManager() {
+        return botManager;
     }
 
     /**
@@ -62,11 +46,17 @@ public final class ParabotsAPI {
      * @param manager The {@link BotManager} instance to be used by the API.
      * @throws IllegalStateException if the method is called more than once.
      */
-    public void initialize(BotManager manager) {
+    public synchronized void initialize(BotManager manager) {
         if (this.botManager == null) {
             this.botManager = manager;
         } else {
             throw new IllegalStateException("ParabotsAPI has already been initialized");
         }
+    }
+
+    public void shutdown() {
+        if (botManager == null) return;
+        botManager.cleanUp();
+        botManager = null;
     }
 }

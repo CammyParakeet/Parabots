@@ -1,21 +1,24 @@
 package com.parakeetstudios.parabots.plugin;
 
+import com.parakeetstudios.parabots.api.BotManager;
+import com.parakeetstudios.parabots.api.ParabotsAPI;
+import com.parakeetstudios.parabots.core.VanillaBotManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ParabotsPlugin extends JavaPlugin {
-
-    //public ParabotsAPI getParabotsAPI()
 
     @Override
     public void onEnable() {
         getLogger().info(this.getName() + " has started!");
 
-        //TODO
+        ParabotsAPI.getInstance().initialize(new VanillaBotManager());
+
     }
 
     @Override
     public void onDisable() {
-        //TODO
+        getLogger().info(this.getName() + " is shutting down");
+        ParabotsAPI.getInstance().shutdown();
     }
 
 }

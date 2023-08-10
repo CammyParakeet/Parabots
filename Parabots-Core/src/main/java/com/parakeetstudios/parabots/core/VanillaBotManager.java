@@ -61,4 +61,9 @@ public class VanillaBotManager implements BotManager {
             bot.despawn();
         }
     }
+
+    @Override
+    public void cleanUp() {
+        despawnAllBots();
+    }
 }

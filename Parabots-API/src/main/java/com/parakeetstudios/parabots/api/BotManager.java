@@ -71,4 +71,6 @@ public interface BotManager {
      * Implementations should ensure bots are properly removed without leaving any traces.
      */
     void despawnAllBots();
+
+    void cleanUp();
 }
