@@ -2,7 +2,6 @@ package com.parakeetstudios.parabots.core.v1_20_R1.net;
 
 import com.mojang.authlib.properties.Property;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_20_R1.CraftServer;
