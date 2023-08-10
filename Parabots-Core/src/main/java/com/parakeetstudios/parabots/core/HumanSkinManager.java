@@ -60,4 +60,9 @@ public class HumanSkinManager implements SkinManager {
     public List<Skin> getCachedSkins() {
         return new ArrayList<>(skinCache.values());
     }
+
+    @Override
+    public void cleanUp() {
+
+    }
 }

@@ -33,5 +33,6 @@ public interface SkinManager {
 
     List<Skin> getCachedSkins();
 
+    void cleanUp();
 
 }

@@ -55,9 +55,33 @@ public final class ParabotsAPI {
         }
     }
 
-    public void shutdown() {
-        if (botManager == null) return;
-        botManager.cleanUp();
-        botManager = null;
+    /**
+     * Safely shuts down the ParabotsAPI, ensuring that any associated resources
+     * are released and cleaned up.
+     * <p>
+     * This method will:
+     * <ul>
+     *     <li>Invoke the cleanup process for both the bot manager and the skin manager, if they are initialized.</li>
+     *     <li>Set the references to the bot manager and skin manager to {@code null} after cleanup.</li>
+     * </ul>
+     * </p>
+     * <p>
+     * Note: This method is synchronized to ensure thread-safety. If multiple threads attempt
+     * to shut down simultaneously, only one will execute the method at a time.
+     * </p>
+     * <p>
+     * After invoking this method, the ParabotsAPI instance will not be functional
+     * until reinitialized.
+     * </p>
+     */
+    public synchronized void shutdown() {
+        if (this.botManager != null) {
+            this.botManager.cleanUp();
+            this.botManager = null;
+        }
+        if (this.skinManager != null) {
+            this.skinManager.cleanUp();
+            this.skinManager = null;
+        }
     }
 }
