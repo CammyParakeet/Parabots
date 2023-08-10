@@ -35,20 +35,11 @@ public class HumanSkinManager implements SkinManager {
             UUID playerUUID;
             try {
                 playerUUID = MojangApiUtils.getUUIDFromPlayerName(playerName);
-                if (playerUUID == null) {
-                    throw new RuntimeException("UUID for player: " + playerName + " was null.");
-                }
             } catch (IOException e) {
                 throw new RuntimeException("Unable to fetch UUID for player: " + playerName, e);
             }
 
-            // Fetch the skin details using playerUUID
-            Skin skin = MojangApiUtils.getSkinFromUUID(playerUUID);
-            if (skin == null) {
-                throw new RuntimeException("Unable to fetch skin for UUID: " + playerUUID);
-            }
-
-            return skin;
+            return MojangApiUtils.getSkinFromUUID(playerUUID);
         }).thenAccept(callback).exceptionally(e -> {
             e.printStackTrace();
             return null;

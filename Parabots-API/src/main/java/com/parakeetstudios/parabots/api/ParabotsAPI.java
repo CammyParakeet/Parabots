@@ -32,10 +32,10 @@ public final class ParabotsAPI {
     }
 
     /**
-     * Initializes the {@link ParabotsAPI} with a specific {@link BotManager} instance.
+     * Initializes the {@link ParabotsAPI} with a specific {@link BotManager} and {@link SkinManager} instance.
      * <p>
      * This method is intended to be called only once during the lifecycle of the API to set
-     * its {@link BotManager}. Any subsequent invocations will result in an {@link IllegalStateException}.
+     * its {@link BotManager} & {@link SkinManager}. Any subsequent invocations will result in an {@link IllegalStateException}.
      * </p>
      * <p>
      * It is recommended to invoke this method early in the startup sequence, ideally from
@@ -43,6 +43,7 @@ public final class ParabotsAPI {
      * </p>
      *
      * @param botManager The {@link BotManager} instance to be used by the API.
+     * @param skinManager The {@link SkinManager} instance to be used by the API.
      * @throws IllegalStateException if the method is called more than once.
      */
     public synchronized void initialize(BotManager botManager, SkinManager skinManager) {

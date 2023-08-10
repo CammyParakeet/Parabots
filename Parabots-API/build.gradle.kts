@@ -1,16 +1,17 @@
 plugins {
     `java-library`
-    id("io.papermc.paperweight.userdev") version "1.5.5"
+}
+
+repositories {
+    mavenCentral()
+    maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
 }
 
 tasks {
-    assemble {
-        dependsOn(reobfJar)
-    }
     compileJava {
         options.encoding = Charsets.UTF_8.name()
         options.release.set(17)
