@@ -6,11 +6,13 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.core.skin.HumanSkin;
 import com.parakeetstudios.parabots.core.v1_20_R1.net.NMSHelper;
+import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 
 public class HumanSkinManager implements SkinManager {
 
@@ -27,8 +29,8 @@ public class HumanSkinManager implements SkinManager {
     }
 
     @Override
-    public Skin fetchFromMojang(String playerName) {
-        return null;
+    public void fetchFromMojang(String playerName, Consumer<Skin> callback) {
+        //TODO
     }
 
     @Override

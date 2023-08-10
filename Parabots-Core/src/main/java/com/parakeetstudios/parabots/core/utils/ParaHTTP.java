@@ -11,8 +11,18 @@ import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
+/**
+ * Utility class for HTTP operations.
+ */
 public class ParaHTTP {
 
+    /**
+     * Sends a synchronous GET request to the specified URL.
+     *
+     * @param url The URL to send the request to.
+     * @return The response content as a string.
+     * @throws IOException If an I/O exception occurs.
+     */
     public static String GET(URL url) throws IOException {
         HttpURLConnection conn = null;
         try {
@@ -40,6 +50,12 @@ public class ParaHTTP {
         }
     }
 
+    /**
+     * Sends an asynchronous GET request to the specified URL.
+     *
+     * @param url The URL to send the request to.
+     * @return A CompletableFuture containing the response content as a string or an exception if an error occurs.
+     */
     public static CompletableFuture<String> asyncGET(URL url) {
         return CompletableFuture.supplyAsync(() -> {
             try {
@@ -50,10 +66,23 @@ public class ParaHTTP {
         });
     }
 
+    /**
+     * Sends a synchronous GET request to the specified URL and parses the response as JSON.
+     *
+     * @param url The URL to send the request to.
+     * @return The parsed response content as a JsonObject.
+     * @throws IOException If an I/O exception occurs.
+     */
     public static JsonObject GETJson(URL url) throws IOException {
         return new Gson().fromJson(GET(url), JsonObject.class);
     }
 
+    /**
+     * Sends an asynchronous GET request to the specified URL and parses the response as JSON.
+     *
+     * @param url The URL to send the request to.
+     * @return A CompletableFuture containing the parsed response as a JsonObject or an exception if an error occurs.
+     */
     public static CompletableFuture<JsonObject> asyncGETJson(URL url) {
         return CompletableFuture.supplyAsync(() -> {
            try {

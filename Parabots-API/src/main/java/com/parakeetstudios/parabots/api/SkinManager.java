@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 public interface SkinManager {
 
@@ -13,7 +14,7 @@ public interface SkinManager {
 
     Skin createFromURL(String URL);
 
-    Skin fetchFromMojang(String playerName);
+    void fetchFromMojang(String playerName, Consumer<Skin> callback);
 
     Skin getSkin(UUID skinID);
 
