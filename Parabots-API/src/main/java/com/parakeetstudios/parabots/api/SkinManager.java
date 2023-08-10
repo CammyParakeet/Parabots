@@ -14,6 +14,13 @@ public interface SkinManager {
 
     Skin createFromURL(String URL);
 
+    /**
+     * Fetches the {@link Skin} details for a given player from Mojang's API.
+     *
+     * @param playerName The name of the player whose skin details are to be fetched.
+     * @param callback   A {@link Consumer} callback that is triggered with the fetched skin
+     *                   or null if there's an error during the process.
+     */
     void fetchFromMojang(String playerName, Consumer<Skin> callback);
 
     Skin getSkin(UUID skinID);

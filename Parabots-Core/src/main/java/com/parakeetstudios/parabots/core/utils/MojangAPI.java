@@ -1,12 +1,12 @@
 package com.parakeetstudios.parabots.core.utils;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.parakeetstudios.parabots.api.skin.Skin;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 public class MojangAPI {
 
@@ -47,6 +47,12 @@ public class MojangAPI {
             e.printStackTrace();
             return null;
         }
+        return null;
+    }
+
+    public static Skin getSkinFromUUID(UUID pID) {
+        //TODO
+        //return new HumanSkin();
         return null;
     }
 
