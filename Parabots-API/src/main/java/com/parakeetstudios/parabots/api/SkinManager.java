@@ -9,12 +9,17 @@ import java.util.UUID;
 
 public interface SkinManager {
 
+    Skin createFromPlayer(Player player);
+
+    Skin createFromURL(String URL);
+
+    Skin fetchFromMojang(String playerName);
+
     Skin getSkin(UUID skinID);
+
+    void saveSkin(Skin skin);
 
     List<Skin> getCachedSkins();
 
-    List<Skin> getPlayerCachedSkins(Player p);
-
-    List<Skin> getBotCachedSkins(Parabot bot);
 
 }

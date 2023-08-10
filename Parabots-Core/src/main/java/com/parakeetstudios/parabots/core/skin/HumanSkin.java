@@ -1,5 +1,6 @@
 package com.parakeetstudios.parabots.core.skin;
 
+import com.mojang.authlib.properties.Property;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
 
@@ -19,6 +20,10 @@ public class HumanSkin implements Skin {
         this.texture = texture;
         this.signature = signature;
         this.visibleSkinParts = EnumSet.noneOf(SkinPart.class);
+    }
+
+    public HumanSkin(UUID id, Property property) {
+        this(id, property.getValue(), property.getSignature());
     }
 
     @Override

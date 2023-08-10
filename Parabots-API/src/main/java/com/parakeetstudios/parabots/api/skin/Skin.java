@@ -1,9 +1,7 @@
 package com.parakeetstudios.parabots.api.skin;
 
-import com.mojang.authlib.GameProfile;
-import com.parakeetstudios.parabots.api.bot.Parabot;
+import com.mojang.authlib.properties.Property;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
-import org.bukkit.entity.Player;
 
 import java.util.EnumSet;
 import java.util.UUID;
