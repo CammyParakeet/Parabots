@@ -1,8 +1,6 @@
 package com.parakeetstudios.parabots.api.skin;
 
-import com.mojang.authlib.properties.Property;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
-
 import java.util.EnumSet;
 import java.util.UUID;
 

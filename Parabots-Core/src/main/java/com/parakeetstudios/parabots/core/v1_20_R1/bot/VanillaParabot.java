@@ -5,7 +5,6 @@ import com.parakeetstudios.parabots.api.bot.BaseParabot;
 import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.core.EntityProgram;
 import com.parakeetstudios.parabots.core.v1_20_R1.EntityProgramRegistry;
-import net.minecraft.core.Direction;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -120,17 +119,6 @@ public class VanillaParabot extends BaseParabot {
     public Location getFacingLocation() {
         return null;
     }
-
-    @Override
-    public void facingDirection(Direction direction) {
-
-    }
-
-    @Override
-    public Direction getFacingDirection() {
-        return null;
-    }
-
 
     @Override
     public Entity getBukkitEntity() {

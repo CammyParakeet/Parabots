@@ -1,7 +1,6 @@
 package com.parakeetstudios.parabots.api.bot;
 
 import com.parakeetstudios.parabots.api.BotManager;
-import net.minecraft.core.Direction;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -48,8 +47,6 @@ public interface Parabot {
 
     void facingLocation(Location location);
     Location getFacingLocation();
-    void facingDirection(Direction direction);
-    Direction getFacingDirection();
 
     void setEntityType(EntityType type);
     EntityType getEntityType();

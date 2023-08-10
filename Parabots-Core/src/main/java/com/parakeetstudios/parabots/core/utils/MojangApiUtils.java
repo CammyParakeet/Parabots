@@ -1,16 +1,21 @@
 package com.parakeetstudios.parabots.core.utils;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.parakeetstudios.parabots.api.skin.Skin;
+import com.parakeetstudios.parabots.core.skin.HumanSkin;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.UUID;
 
 public class MojangApiUtils {
 
     private static final String PROFILE_URL = "https://api.mojang.com/users/profiles/minecraft/";
+    private static final String SKIN_URL = "https://sessionserver.mojang.com/session/minecraft/profile/";
 
     /**
      * Retrieves the UUID associated with a given player name from Mojang's API.
@@ -29,7 +34,7 @@ public class MojangApiUtils {
      *
      * @param playerName The name of the player whose UUID needs to be retrieved.
      * @return The UUID of the player if found and successfully processed, otherwise null.
-     * @throws IOException If an I/O exception occurs during the HTTP request.
+     * @throws RuntimeException If an I/O exception occurs during the HTTP request.
      */
     public static UUID getUUIDFromPlayerName(String playerName) throws IOException {
         try {
@@ -44,16 +49,38 @@ public class MojangApiUtils {
                 );
             }
         } catch (IOException | JsonSyntaxException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to fetch UUID for playerName" + playerName, e);
         }
-        return null;
+        throw new RuntimeException("UUID not found for playerName: " + playerName);
     }
 
+    /**
+     * Fetches the player skin data from Mojang's API based on the provided UUID.
+     *
+     * @param pID The UUID of the player.
+     * @return The {@link Skin} object containing the skin data of the player.
+     * @throws RuntimeException If there's an error during the fetching process or if the skin isn't found.
+     */
     public static Skin getSkinFromUUID(UUID pID) {
-        //TODO
-        //return new HumanSkin();
-        return null;
-    }
+        try {
+            URL url = new URL(SKIN_URL + pID.toString().replace("-", ""));
+            JsonObject response = ParaHTTP.GETJson(url);
 
+            if (response.has("properties")) {
+                JsonArray properties = response.getAsJsonArray("properties");
+                for (JsonElement element : properties) {
+                    JsonObject property = element.getAsJsonObject();
+                    if (property.has("name") && "textures".equals(property.get("name").getAsString())) {
+                        String texture = property.get("value").getAsString();
+                        String signature = property.get("signature").getAsString();
+                        return new HumanSkin(UUID.randomUUID(), texture, signature);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to fetch skin for UUID" + pID, e);
+        }
+        throw new RuntimeException("Skin not found for UUID: " + pID);
+    }
 
 }
