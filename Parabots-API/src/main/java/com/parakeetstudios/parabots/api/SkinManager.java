@@ -15,11 +15,16 @@ public interface SkinManager {
     Skin createFromURL(String URL);
 
     /**
-     * Fetches the {@link Skin} details for a given player from Mojang's API.
+     * Fetches a {@link Skin} object for the given player name from Mojang's API.
+     * This method works asynchronously, meaning it will not block the calling thread.
+     * Once the skin data is retrieved and the Skin object is created, it will pass the Skin
+     * to the provided callback.
+     * <p>
+     * If there are any issues during the fetching or processing, the exceptions will be printed to the error stream.
+     * </p>
      *
-     * @param playerName The name of the player whose skin details are to be fetched.
-     * @param callback   A {@link Consumer} callback that is triggered with the fetched skin
-     *                   or null if there's an error during the process.
+     * @param playerName The name of the player for whom the skin needs to be fetched.
+     * @param callback   A consumer callback that will be invoked with the Skin object once it's ready.
      */
     void fetchFromMojang(String playerName, Consumer<Skin> callback);
 

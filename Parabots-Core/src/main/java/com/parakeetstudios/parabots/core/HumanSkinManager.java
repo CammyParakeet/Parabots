@@ -3,10 +3,11 @@ package com.parakeetstudios.parabots.core;
 import com.parakeetstudios.parabots.api.SkinManager;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.core.skin.HumanSkin;
-import com.parakeetstudios.parabots.core.utils.MojangAPI;
+import com.parakeetstudios.parabots.core.utils.MojangApiUtils;
 import com.parakeetstudios.parabots.core.v1_20_R1.net.NMSHelper;
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
@@ -31,13 +32,18 @@ public class HumanSkinManager implements SkinManager {
     public void fetchFromMojang(String playerName, Consumer<Skin> callback) {
         CompletableFuture.supplyAsync(() -> {
             // Get the UUID from playerName
-            UUID playerUUID = MojangAPI.getUUIDFromPlayerName(playerName);
-            if (playerUUID == null) {
-                throw new RuntimeException("Unable to fetch UUID for player: " + playerName);
+            UUID playerUUID;
+            try {
+                playerUUID = MojangApiUtils.getUUIDFromPlayerName(playerName);
+                if (playerUUID == null) {
+                    throw new RuntimeException("UUID for player: " + playerName + " was null.");
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("Unable to fetch UUID for player: " + playerName, e);
             }
 
             // Fetch the skin details using playerUUID
-            Skin skin = MojangAPI.getSkinFromUUID(playerUUID);
+            Skin skin = MojangApiUtils.getSkinFromUUID(playerUUID);
             if (skin == null) {
                 throw new RuntimeException("Unable to fetch skin for UUID: " + playerUUID);
             }
