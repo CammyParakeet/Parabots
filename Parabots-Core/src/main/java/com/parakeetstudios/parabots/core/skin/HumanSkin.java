@@ -1,12 +1,7 @@
 package com.parakeetstudios.parabots.core.skin;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
-import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
-import net.minecraft.server.level.ServerPlayer;
-import org.bukkit.entity.Player;
 
 import java.util.EnumSet;
 import java.util.UUID;
@@ -61,4 +56,6 @@ public class HumanSkin implements Skin {
     public void setVisibleSkinParts(EnumSet<SkinPart> parts) {
         this.visibleSkinParts = parts;
     }
+
+
 }
