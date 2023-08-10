@@ -48,16 +48,6 @@ public class VanillaParabot extends BaseParabot {
     }
 
     @Override
-    public Parabot clone() {
-        return null;
-    }
-
-    @Override
-    public Parabot copy() {
-        return null;
-    }
-
-    @Override
     public boolean spawn() {
         return spawn(getLocation(), CreatureSpawnEvent.SpawnReason.CUSTOM);
     }

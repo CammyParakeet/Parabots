@@ -63,6 +63,6 @@ public class HumanSkinManager implements SkinManager {
 
     @Override
     public void cleanUp() {
-
+        this.skinCache = null;
     }
 }

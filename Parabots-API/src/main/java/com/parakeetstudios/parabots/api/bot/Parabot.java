@@ -24,9 +24,6 @@ public interface Parabot {
     void setDisplayName(String name);
     String getDisplayName();
 
-    Parabot clone();
-    Parabot copy();
-
     boolean spawn();
     boolean spawn(Location location);
     boolean spawn(Location location, CreatureSpawnEvent.SpawnReason reason);

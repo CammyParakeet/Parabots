@@ -1,11 +1,23 @@
 plugins {
     `java-library`
+    `maven-publish`
     id("io.papermc.paperweight.userdev") version "1.5.5"
 }
 
 dependencies {
     paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
     implementation(project(":Parabots-API"))
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            groupId = "com.parakeetstudios"
+            artifactId = "parabots-core"
+            version = "1.0.0"
+        }
+    }
 }
 
 tasks {
