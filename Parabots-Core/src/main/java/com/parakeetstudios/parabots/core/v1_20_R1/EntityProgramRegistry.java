@@ -2,10 +2,13 @@ package com.parakeetstudios.parabots.core.v1_20_R1;
 
 import com.parakeetstudios.parabots.core.EntityProgram;
 import com.parakeetstudios.parabots.core.ProgramForType;
+import com.parakeetstudios.parabots.core.utils.Paralog;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.parakeetstudios.parabots.core.utils.ReflectionUtils.getClasses;
 
@@ -34,10 +37,18 @@ public class EntityProgramRegistry {
      * or invoking its constructor.
      */
     public static void registerPrograms() throws Exception {
-        for (Class<?> clazz : getClasses("com.parakeetstudios.parabots.core.v1_20_R1.program")) {
-            ProgramForType annot = clazz.getAnnotation(ProgramForType.class);
-            programs.put(annot.value(), (EntityProgram) clazz.getConstructor().newInstance());
+        Paralog.info("Before the loop...");
+        try {
+            for (Class<?> clazz : getClasses("com.parakeetstudios.parabots.core.v1_20_R1.program")) {
+                ProgramForType annot = clazz.getAnnotation(ProgramForType.class);
+                Paralog.info("TYPE: " + clazz.getAnnotation(ProgramForType.class).toString());
+                programs.put(annot.value(), (EntityProgram) clazz.getConstructor().newInstance());
+            }
+        } catch (Exception e) {
+            Paralog.severe("Error registering programs " + e.getMessage());
+            Paralog.severe(e.getCause().getMessage());
         }
+
     }
 
     public static EntityProgram supplyBuilderForType(EntityType type) {

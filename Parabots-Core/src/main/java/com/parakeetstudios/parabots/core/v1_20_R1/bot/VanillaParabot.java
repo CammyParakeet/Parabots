@@ -21,6 +21,8 @@ public class VanillaParabot extends BaseParabot {
 
     public VanillaParabot(EntityType type, String name, Location loc, BotManager manager) {
         super(type, name, loc, manager);
+        Bukkit.getLogger().info(type.toString());
+        Bukkit.getLogger().info(EntityProgramRegistry.supplyBuilderForType(type).toString());
         setEntityProgram(EntityProgramRegistry.supplyBuilderForType(type));
     }
 
