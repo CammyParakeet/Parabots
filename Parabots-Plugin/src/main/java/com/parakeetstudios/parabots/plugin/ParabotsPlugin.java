@@ -13,7 +13,7 @@ public class ParabotsPlugin extends JavaPlugin {
         getLogger().info(this.getName() + " has started!");
         ParabotsAPI.getInstance().initialize(new VanillaBotManager(), new HumanSkinManager());
         try {
-            EntityProgramRegistry.registerBuilders();
+            EntityProgramRegistry.registerPrograms();
         } catch (Exception e) {
             e.printStackTrace();
         }

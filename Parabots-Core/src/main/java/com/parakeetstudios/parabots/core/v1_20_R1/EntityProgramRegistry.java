@@ -33,7 +33,7 @@ public class EntityProgramRegistry {
      * @throws Exception if there is an issue accessing the class, its annotations,
      * or invoking its constructor.
      */
-    public static void registerBuilders() throws Exception {
+    public static void registerPrograms() throws Exception {
         for (Class<?> clazz : getClasses("com.parakeetstudios.parabots.core.v1_20_R1.program")) {
             ProgramForType annot = clazz.getAnnotation(ProgramForType.class);
             programs.put(annot.value(), (EntityProgram) clazz.getConstructor().newInstance());
