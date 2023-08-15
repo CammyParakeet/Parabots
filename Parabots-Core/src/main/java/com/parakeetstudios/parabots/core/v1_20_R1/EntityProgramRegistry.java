@@ -5,6 +5,7 @@ import com.parakeetstudios.parabots.core.ProgramForType;
 import com.parakeetstudios.parabots.core.utils.Paralog;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,37 +19,30 @@ public class EntityProgramRegistry {
     private static final Map<EntityType, EntityProgram> programs = new HashMap<>();
 
     /**
-     * Registers all EntityProgram implementations within the specified package.
+     * Registers all entity programs located within a specific package.
      * <p>
-     * This method scans the provided package for classes that have been annotated with
-     * {@link ProgramForType}. For each found class, it creates a new instance and
-     * registers it into a static map with the entity type from the annotation as the key.
-     * </p>
-     * <p>
-     * The method is intended to be called during the plugin's initialization process to
-     * automatically discover and register all the available entity programs.
-     * </p>
-     * <p>
-     * It is crucial that classes within the specified package have a default constructor
-     * (i.e., no-args constructor) as this method relies on it to create new instances.
+     * This method scans a given package for classes annotated with the {@link ProgramForType} annotation,
+     * instantiates them, and registers them into the {@code programs} map. The entity type specified in
+     * the annotation is used as the key, and the instantiated class (assumed to be an {@link EntityProgram})
+     * serves as the value in the map.
      * </p>
      *
-     * @throws Exception if there is an issue accessing the class, its annotations,
-     * or invoking its constructor.
+     * @param plugin The active instance of the {@link JavaPlugin} that's responsible for these programs.
+     *               This is used to derive the appropriate class loader for loading the entity program classes.
+     *
+     * @throws Exception if there's an error during class scanning, instantiation, or registration.
      */
-    public static void registerPrograms() throws Exception {
+    public static void registerPrograms(JavaPlugin plugin) {
         Paralog.info("Before the loop...");
         try {
-            for (Class<?> clazz : getClasses("com.parakeetstudios.parabots.core.v1_20_R1.program")) {
+            for (Class<?> clazz : getClasses("com.parakeetstudios.parabots.core.v1_20_R1.program", plugin.getClass().getClassLoader())) {
                 ProgramForType annot = clazz.getAnnotation(ProgramForType.class);
                 Paralog.info("TYPE: " + clazz.getAnnotation(ProgramForType.class).toString());
                 programs.put(annot.value(), (EntityProgram) clazz.getConstructor().newInstance());
             }
         } catch (Exception e) {
-            Paralog.severe("Error registering programs " + e.getMessage());
-            Paralog.severe(e.getCause().getMessage());
+            Paralog.severe("Error registering programs: " + e.getMessage());
         }
-
     }
 
     public static EntityProgram supplyBuilderForType(EntityType type) {

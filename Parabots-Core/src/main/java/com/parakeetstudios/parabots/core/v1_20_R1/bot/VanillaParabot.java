@@ -4,6 +4,7 @@ import com.parakeetstudios.parabots.api.BotManager;
 import com.parakeetstudios.parabots.api.bot.BaseParabot;
 import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.core.EntityProgram;
+import com.parakeetstudios.parabots.core.utils.Paralog;
 import com.parakeetstudios.parabots.core.v1_20_R1.EntityProgramRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -21,8 +22,6 @@ public class VanillaParabot extends BaseParabot {
 
     public VanillaParabot(EntityType type, String name, Location loc, BotManager manager) {
         super(type, name, loc, manager);
-        Bukkit.getLogger().info(type.toString());
-        Bukkit.getLogger().info(EntityProgramRegistry.supplyBuilderForType(type).toString());
         setEntityProgram(EntityProgramRegistry.supplyBuilderForType(type));
     }
 

@@ -22,10 +22,12 @@ public class ReflectionUtils {
      * @throws ClassNotFoundException if a class cannot be located by the specified class name.
      * @throws IOException if there's an error reading the class resources.
      */
-    public static Set<Class<?>> getClasses(String pkgName) throws ClassNotFoundException, IOException {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+    public static Set<Class<?>> getClasses(String pkgName, ClassLoader classLoader) throws ClassNotFoundException, IOException {
+        Paralog.info("getClasses running?");
         String path = pkgName.replace('.', '/');
         Enumeration<URL> resources = classLoader.getResources(path);
+        Paralog.info(System.getProperty("java.class.path"));
+        Paralog.info(path);
         Set<Class<?>> classes = new HashSet<>();
 
         while(resources.hasMoreElements()) {
@@ -40,7 +42,7 @@ public class ReflectionUtils {
      * that are part of the specified package.
      * <p>
      * This method is a helper function used to traverse directories and identify class files.
-     * It's utilized by the {@link #getClasses(String)} method to dig deeper into package structures.
+     * It's utilized by the {@link #getClasses(String, ClassLoader)} method to dig deeper into package structures.
      * </p>
      *
      * @param dir     The directory to start the search in.
@@ -49,6 +51,7 @@ public class ReflectionUtils {
      * @throws ClassNotFoundException if a class cannot be located by the specified class name.
      */
     private static Set<Class<?>> findClasses(File dir, String pkgName) throws ClassNotFoundException {
+        Paralog.info("findClasses running?");
         Set<Class<?>> classes = new HashSet<>();
         if (!dir.exists()) return classes;
         File[] files = dir.listFiles();
@@ -57,7 +60,7 @@ public class ReflectionUtils {
             if (file.isDirectory()) {
                 classes.addAll(findClasses(file, pkgName + "." + file.getName()));
             } else if (file.getName().endsWith(".class")) {
-                classes.add(Class.forName(pkgName + "." + file.getName()));
+                classes.add(Class.forName(pkgName + "." + file.getName().substring(0, file.getName().length() - 6)));
             }
         }
         return classes;

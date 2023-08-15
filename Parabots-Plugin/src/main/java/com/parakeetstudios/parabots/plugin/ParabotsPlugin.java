@@ -19,7 +19,7 @@ public class ParabotsPlugin extends JavaPlugin {
 
         // Register entity programs
         try {
-            EntityProgramRegistry.registerPrograms();
+            EntityProgramRegistry.registerPrograms(this);
         } catch (Exception e) {
             e.printStackTrace();
         }

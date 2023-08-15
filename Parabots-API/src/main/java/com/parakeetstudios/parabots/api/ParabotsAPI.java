@@ -54,7 +54,6 @@ public final class ParabotsAPI {
         if (this.botManager == null && this.skinManager == null) {
             this.botManager = botManager;
             this.skinManager = skinManager;
-            Objects.requireNonNull(Bukkit.getServer().getPluginManager().getPlugin("Parabots")).getLogger().info("INITIALIZED!!");
         } else {
             throw new IllegalStateException("ParabotsAPI has already been initialized");
         }
