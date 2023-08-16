@@ -1,7 +1,11 @@
 package com.parakeetstudios.parabots.core.v1_20_R1.net;
 
 import com.mojang.authlib.properties.Property;
+import com.parakeetstudios.parabots.core.utils.Paralog;
+import net.minecraft.server.level.ChunkMap;
+import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.TickingTracker;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_20_R1.CraftServer;
@@ -19,8 +23,27 @@ public class NMSHelper {
         return getNMSWorldFromEntity(entity).addFreshEntity(getNMSEntity(entity), reason);
     }
 
-    public static void addEntityToChunkMap(Entity entity) {
-        getNMSWorldFromEntity(entity).getChunkSource().addEntity(getNMSEntity(entity));
+    public static boolean addPlayerEntityToNMSWorld(Entity player, CreatureSpawnEvent.SpawnReason reason) {
+        if (!(player instanceof Player)) return false;
+        ChunkMap chunkMap;
+        try {
+            chunkMap = getNMSWorldFromEntity(player).getChunkSource().chunkMap;
+            //TODO change viewdistance
+        } catch (Throwable e) {
+            Paralog.severe("Failed to assign chunk map view distance: " + e.getMessage());
+            e.printStackTrace();
+        }
+        boolean success = addEntityToNMSWorld(player, reason);
+        try {
+            //TODO reset viewdistance
+        } catch (Throwable e) {
+            Paralog.severe("Failed to reset chunk view distance: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+
+
+        return true;
     }
 
     public static void removePlayerFromPlayerList(Player player) {

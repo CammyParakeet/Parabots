@@ -31,7 +31,7 @@ public class VanillaBotManager implements BotManager {
         Parabot bot = createVanillaBot(type, name, location);
         bots.put(bot.getBotID(), bot);
 
-        Paralog.info(NMSHelper.getNMSEntity(bot.getBukkitEntity()).tracker.toString());
+        //Paralog.info(NMSHelper.getNMSEntity(bot.getBukkitEntity()).tracker.toString());
 
         return bot;
     }

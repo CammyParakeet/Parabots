@@ -28,19 +28,13 @@ public abstract class BaseEntityProgram implements EntityProgram {
 
     @Override
     public boolean spawn(Location location, CreatureSpawnEvent.SpawnReason reason) throws NullPointerException {
-        if (!NMSHelper.addEntityToNMSWorld(bukkitEntity, reason)) {
+        boolean success = (bukkitEntity instanceof Player)
+                ? NMSHelper.addPlayerEntityToNMSWorld(bukkitEntity, reason)
+                : NMSHelper.addEntityToNMSWorld(bukkitEntity, reason);
+        if (!success) {
             Paralog.severe("Failed to spawn entity: " + bukkitEntity.toString());
-            return false;
         }
-        if (bukkitEntity instanceof Player) {
-            try {
-                NMSHelper.addEntityToChunkMap(bukkitEntity);
-            } catch (Exception e) {
-                Paralog.severe("Failed to add entity to chunk map: " + bukkitEntity.toString());
-                e.printStackTrace();
-            }
-        }
-        return true;
+        return success;
     }
 
     @Override
