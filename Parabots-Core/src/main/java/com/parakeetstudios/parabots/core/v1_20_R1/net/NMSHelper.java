@@ -19,6 +19,10 @@ public class NMSHelper {
         return getNMSWorldFromEntity(entity).addFreshEntity(getNMSEntity(entity), reason);
     }
 
+    public static void addEntityToChunkMap(Entity entity) {
+        getNMSWorldFromEntity(entity).getChunkSource().addEntity(getNMSEntity(entity));
+    }
+
     public static void removePlayerFromPlayerList(Player player) {
         ((CraftServer) Bukkit.getServer()).getHandle().players.remove(getNMSEntity(player));
     }
