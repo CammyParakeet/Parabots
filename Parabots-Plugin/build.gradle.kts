@@ -11,7 +11,7 @@ description = "Core implementation for Parabots library/plugin"
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
     implementation(project(":Parabots-API"))
-    implementation(project(":Parabots-Core"))
+    implementation(project(":Parabots-Core", configuration = "reobf"))
 }
 
 publishing {
@@ -42,13 +42,17 @@ tasks {
     javadoc {
         options.encoding = Charsets.UTF_8.name()
     }
-
 }
 
 tasks.shadowJar {
     archiveBaseName.set("parabots")
     archiveVersion.set("1.0.0")
     archiveClassifier.set("")
-
     dependsOn(project(":Parabots-Core").tasks.getByName("reobfJar"))
 }
+
+
+
+
+
+

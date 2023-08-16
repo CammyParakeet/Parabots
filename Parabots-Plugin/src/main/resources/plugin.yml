@@ -1,6 +1,7 @@
 name: Parabots
 main: com.parakeetstudios.parabots.plugin.ParabotsPlugin
 version: 1.0.0
+load: STARTUP
 api-version: 1.20
 author: Cammy@Parakeet
 description: Parabots Lightweight

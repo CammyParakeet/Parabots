@@ -27,6 +27,7 @@ public abstract class BaseParabot implements Parabot {
         this.botID = UUID.randomUUID();
         this.minecraftID = UUID.randomUUID();
         this.botName = name;
+        this.displayName = name;
         this.manager = manager;
         this.entityType = type;
         this.currentLocation = loc;

@@ -4,6 +4,10 @@ plugins {
     id("io.papermc.paperweight.userdev") version "1.5.5"
 }
 
+group = "com.parakeetstudios.parabots"
+version = "1.0.0-SNAPSHOT"
+description = "Core implementation for Parabots library/plugin"
+
 dependencies {
     paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
     compileOnly(project(":Parabots-API"))
@@ -31,5 +35,5 @@ tasks {
     javadoc {
         options.encoding = Charsets.UTF_8.name()
     }
-
 }
+

@@ -2,6 +2,7 @@ package com.parakeetstudios.parabots.core.v1_20_R1;
 
 import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.core.EntityProgram;
+import com.parakeetstudios.parabots.core.utils.Paralog;
 import com.parakeetstudios.parabots.core.v1_20_R1.net.NMSHelper;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -27,7 +28,9 @@ public abstract class BaseEntityProgram implements EntityProgram {
 
     @Override
     public boolean spawn(Location location, CreatureSpawnEvent.SpawnReason reason) throws NullPointerException {
-        return NMSHelper.addEntityToNMSWorld(bukkitEntity, reason);
+        boolean spawnWorked = NMSHelper.addEntityToNMSWorld(bukkitEntity, reason);
+        Paralog.info("BaseProgram Spawn? " + spawnWorked);
+        return spawnWorked;
     }
 
     @Override

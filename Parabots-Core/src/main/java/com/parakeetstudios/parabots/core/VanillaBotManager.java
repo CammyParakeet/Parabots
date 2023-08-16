@@ -2,7 +2,9 @@ package com.parakeetstudios.parabots.core;
 
 import com.parakeetstudios.parabots.api.BotManager;
 import com.parakeetstudios.parabots.api.bot.Parabot;
+import com.parakeetstudios.parabots.core.utils.Paralog;
 import com.parakeetstudios.parabots.core.v1_20_R1.bot.VanillaParabot;
+import com.parakeetstudios.parabots.core.v1_20_R1.net.NMSHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
@@ -28,6 +30,9 @@ public class VanillaBotManager implements BotManager {
 
         Parabot bot = createVanillaBot(type, name, location);
         bots.put(bot.getBotID(), bot);
+
+        Paralog.info(NMSHelper.getNMSEntity(bot.getBukkitEntity()).tracker.toString());
+
         return bot;
     }
 

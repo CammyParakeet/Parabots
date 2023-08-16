@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class NMSHelper {
 
     public static boolean addEntityToNMSWorld(@NotNull Entity entity, CreatureSpawnEvent.SpawnReason reason) {
-        return (getNMSEntity(entity)).level().addFreshEntity(getNMSEntity(entity), reason);
+        return getNMSWorldFromEntity(entity).addFreshEntity(getNMSEntity(entity), reason);
     }
 
     public static void removePlayerFromPlayerList(Player player) {

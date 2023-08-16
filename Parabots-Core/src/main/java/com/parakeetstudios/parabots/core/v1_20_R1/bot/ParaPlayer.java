@@ -25,6 +25,7 @@ public class ParaPlayer extends ServerPlayer implements Skinnable {
         this.bot = bot;
         DummyConnection conn = new DummyConnection(PacketFlow.CLIENTBOUND);
         super.connection = new DummyPacketListener(server, conn, this);
+        this.setInvisible(false);
     }
 
 

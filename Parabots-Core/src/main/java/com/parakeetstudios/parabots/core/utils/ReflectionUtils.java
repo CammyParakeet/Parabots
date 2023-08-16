@@ -3,9 +3,9 @@ package com.parakeetstudios.parabots.core.utils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 public class ReflectionUtils {
 
@@ -22,17 +22,40 @@ public class ReflectionUtils {
      * @throws ClassNotFoundException if a class cannot be located by the specified class name.
      * @throws IOException if there's an error reading the class resources.
      */
-    public static Set<Class<?>> getClasses(String pkgName, ClassLoader classLoader) throws ClassNotFoundException, IOException {
-        Paralog.info("getClasses running?");
-        String path = pkgName.replace('.', '/');
-        Enumeration<URL> resources = classLoader.getResources(path);
-        Paralog.info(System.getProperty("java.class.path"));
-        Paralog.info(path);
-        Set<Class<?>> classes = new HashSet<>();
+//    public static Set<Class<?>> getClasses(String pkgName, ClassLoader classLoader) throws ClassNotFoundException, IOException {
+//        String path = pkgName.replace('.', '/');
+//        Enumeration<URL> resources = classLoader.getResources(path);
+//        Set<Class<?>> classes = new HashSet<>();
+//
+//        Paralog.info("Raw getFile: " + resources.nextElement().getFile());
+//        File test = new File(resources.nextElement().getFile());
+//        Paralog.info("File creation worked?");
+//        Paralog.info("Dir exists?" + test.exists());
+//
+//        while(resources.hasMoreElements()) {
+//            URL resource = resources.nextElement();
+//            Paralog.info("Resource? " + resource.toString());
+//            classes.addAll(findClasses(new File(resource.getFile()), pkgName));
+//        }
+//        Paralog.info("Classes empty? " + classes.isEmpty());
+//
+//        return classes;
+//    }
 
-        while(resources.hasMoreElements()) {
-            URL resource = resources.nextElement();
-            classes.addAll(findClasses(new File(resource.getFile()), pkgName));
+    public static Set<Class<?>> getClasses(String pkgName, ClassLoader classLoader) throws ClassNotFoundException, IOException {
+        return null;
+    }
+
+    public static List<String> getClassesFromJar(String jarPath, String pkgName) throws IOException {
+        List<String> classes = new ArrayList<>();
+        try (JarFile file = new JarFile(jarPath)) {
+            Enumeration<JarEntry> entries = file.entries();
+            while (entries.hasMoreElements()) {
+                JarEntry entry = entries.nextElement();
+                if (entry.getName().endsWith(".class") && entry.getName().startsWith(pkgName.replace('.', '/'))) {
+                    classes.add(entry.getName().replace('/', '.').replace(".class", ""));
+                }
+            }
         }
         return classes;
     }
@@ -51,9 +74,9 @@ public class ReflectionUtils {
      * @throws ClassNotFoundException if a class cannot be located by the specified class name.
      */
     private static Set<Class<?>> findClasses(File dir, String pkgName) throws ClassNotFoundException {
-        Paralog.info("findClasses running?");
         Set<Class<?>> classes = new HashSet<>();
         if (!dir.exists()) return classes;
+        Paralog.info("Have we gotten here yet?");
         File[] files = dir.listFiles();
         assert files != null;
         for (File file : files) {

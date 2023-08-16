@@ -6,6 +6,8 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.core.EntityProgram;
 import com.parakeetstudios.parabots.core.utils.Paralog;
 import com.parakeetstudios.parabots.core.v1_20_R1.EntityProgramRegistry;
+import com.parakeetstudios.parabots.core.v1_20_R1.net.NMSHelper;
+import net.minecraft.world.entity.ai.behavior.EntityTracker;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -23,6 +25,7 @@ public class VanillaParabot extends BaseParabot {
     public VanillaParabot(EntityType type, String name, Location loc, BotManager manager) {
         super(type, name, loc, manager);
         setEntityProgram(EntityProgramRegistry.supplyBuilderForType(type));
+        entityProgram.build(this, loc);
     }
 
     /**
@@ -61,10 +64,11 @@ public class VanillaParabot extends BaseParabot {
     @Override
     public boolean spawn(Location location, CreatureSpawnEvent.SpawnReason reason) {
         if (isSpawned()) {
-            Bukkit.getLogger().info("Tried to spawn existing entity");
+            Paralog.severe("Tried to spawn existing entity");
             return false;
         }
         setSpawned(entityProgram.spawn(location, reason));
+        //Paralog.info("Set spawned worked? " + isSpawned());
         return isSpawned();
     }
 

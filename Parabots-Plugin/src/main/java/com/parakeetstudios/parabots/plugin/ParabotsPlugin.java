@@ -29,7 +29,7 @@ public class ParabotsPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getLogger().info(this.getName() + " is shutting down");
+        Paralog.info(this.getName() + " is shutting down");
         ParabotsAPI.getInstance().shutdown();
     }
 
