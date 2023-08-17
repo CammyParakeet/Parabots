@@ -6,6 +6,7 @@ import com.parakeetstudios.parabots.api.bot.Parabot;
 import com.parakeetstudios.parabots.api.skin.Skin;
 import com.parakeetstudios.parabots.core.skin.Skinnable;
 import com.parakeetstudios.parabots.api.utils.SkinUtils.SkinPart;
+import com.parakeetstudios.parabots.core.utils.Paralog;
 import com.parakeetstudios.parabots.core.v1_20_R1.net.DummyConnection;
 import com.parakeetstudios.parabots.core.v1_20_R1.net.DummyPacketListener;
 import net.minecraft.network.protocol.PacketFlow;
@@ -28,15 +29,21 @@ public class ParaPlayer extends ServerPlayer implements Skinnable {
         this.setInvisible(false);
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+        //Paralog.info("Ticking?" + this.getStringUUID());
+    }
 
     @Override
     public void doTick() {
         if (bot == null) {
+            Paralog.info("bot null?");
             super.doTick();
         }
         super.baseTick();
         detectEquipmentUpdates();
-        noPhysics = true;
+        Paralog.info("Ticking?" + this.getStringUUID());
     }
 
 

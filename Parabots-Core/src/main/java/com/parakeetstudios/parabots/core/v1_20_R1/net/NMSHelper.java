@@ -17,6 +17,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class NMSHelper {
 
     public static boolean addEntityToNMSWorld(@NotNull Entity entity, CreatureSpawnEvent.SpawnReason reason) {
@@ -24,27 +26,39 @@ public class NMSHelper {
     }
 
     public static boolean addPlayerEntityToNMSWorld(Entity player, CreatureSpawnEvent.SpawnReason reason) {
-        if (!(player instanceof Player)) return false;
+        if (!(player instanceof Player)) {
+            Paralog.warning("Attempted to add a non-player entity using addPlayerEntityToNMSWorld.");
+            return false;
+        }
+
         ChunkMap chunkMap;
+        int originalViewDistance;
+
         try {
             chunkMap = getNMSWorldFromEntity(player).getChunkSource().chunkMap;
-            //TODO change viewdistance
+            originalViewDistance = chunkMap.getEffectiveViewDistance();
+            chunkMap.setViewDistance(-1);
         } catch (Throwable e) {
-            Paralog.severe("Failed to assign chunk map view distance: " + e.getMessage());
+            Paralog.severe("Failed to adjust chunk map view distance: " + e.getMessage());
             e.printStackTrace();
+            return false; // Return early if there's an issue adjusting the view distance.
         }
+
         boolean success = addEntityToNMSWorld(player, reason);
+
         try {
-            //TODO reset viewdistance
+            chunkMap.setViewDistance(originalViewDistance);
         } catch (Throwable e) {
-            Paralog.severe("Failed to reset chunk view distance: " + e.getMessage());
+            Paralog.severe("Failed to restore chunk view distance: " + e.getMessage());
             e.printStackTrace();
         }
 
+        Paralog.info("Added" + getNMSEntity(player).toString());
+        Paralog.info("This? " + getNMSEntity(player).tracker.serverEntity);
 
-
-        return true;
+        return success;
     }
+
 
     public static void removePlayerFromPlayerList(Player player) {
         ((CraftServer) Bukkit.getServer()).getHandle().players.remove(getNMSEntity(player));
